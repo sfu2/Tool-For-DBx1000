@@ -20,7 +20,11 @@
 ```
 cd /path/to/DBx1000
 ```
-2. 运行自动测试程序
+2. 从GitHub获取```test_cc.py```
+```
+wget https://raw.githubusercontent.com/AnonymousSFZ/Tool-For-DBx1000/master/test_cc.py
+```
+3. 运行自动测试程序
 ```
 python test_cc.py
 ```
