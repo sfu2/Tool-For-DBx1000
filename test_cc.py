@@ -19,7 +19,7 @@ def insert_job(alg):
 	jobs[alg] = {
 		"CC_ALG"			: alg,
 		"WORKLOAD"			: "TPCC",
-		"MAX_TXN_PER_PART"	: 1000000
+		"MAX_TXN_PER_PART"		: 1000000
 	}
 
 def test_compile(job):
