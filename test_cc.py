@@ -14,13 +14,13 @@ def replace(filename, pattern, replacement):
 jobs = {}
 dbms_cfg = ["config-std.h", "config.h"]
 algs = ["WAIT_DIE", "NO_WAIT", "DL_DETECT", "TIMESTAMP", "MVCC","HEKATON", "HSTORE", "OCC", "VLL", "TICTOC", "SILO"]
+
 def insert_job(alg):
 	jobs[alg] = {
-		"CC_ALG"			    : alg,
-		"WORKLOAD"			  : "TPCC",
-		"MAX_TXN_PER_PART": 1000000
+		"CC_ALG"			: alg,
+		"WORKLOAD"			: "TPCC",
+		"MAX_TXN_PER_PART"	: 1000000
 	}
-
 
 def test_compile(job):
 	os.system("cp "+ dbms_cfg[0] +' ' + dbms_cfg[1])
