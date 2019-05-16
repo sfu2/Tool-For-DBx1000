@@ -58,3 +58,15 @@ PASS Run		alg=WAIT_DIE,	thread=2
 ```python
 algs = ["WAIT_DIE", "NO_WAIT", "DL_DETECT", "TIMESTAMP", "MVCC","HEKATON", "HSTORE", "OCC", "VLL", "TICTOC", "SILO"]
 ```
+
+2. 某并发控制算法过慢，可否跳过该算法？
+
+使用```Ctrl + C```即可终止当前测试程序，并自动继续执行下一条测试程序。但请注意，即使使用```Ctrl + C```终止，命令行仍会提示PASS，而测试程序实际上并未成功完成测试。
+
+3. 整套测试耗时过长，我希望可以终止测试
+
+使用```Ctrl + Z```即可停止当前测试程序，之后使用
+```
+kill %{job_id}
+```
+命令终止测试程序。但请注意，下一次执行测试程序时仍会从头开始重新测试，关于此问题请参考FAQ 1。
