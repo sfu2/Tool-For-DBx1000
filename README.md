@@ -3,7 +3,8 @@
 [DBx1000](https://github.com/yxymit/DBx1000)是一个单节点OLTP数据库管理系统(DBMS)。DBx1000的目标是使DBMS在未来的1000核处理器上可伸缩。DBx1000目前实现了所有7种经典的并发控制方案。它们在不同的工作负载下显示不同的可伸缩性属性。
 
 本repo旨在为DBx1000编写自动化测试程序。  
-**注意：本repo代码仅供参考，因使用本repo代码而造成的所有损失自负！**
+
+**免责声明：本repo代码仅供参考，因使用本repo代码而造成的所有损失自负！**
 
 ```test_cc.py```
 测试DBx1000提供的所有并发控制算法。具体测试参数为：
@@ -50,6 +51,9 @@ PASS Run		alg=WAIT_DIE,	thread=1
 PASS Run		alg=WAIT_DIE,	thread=2
 ...
 ```
+
+## 建议
+整个测试程序耗时较长，建议使用适用于Windows的Linux子系统（Windows Subsystem for Linux）运行该测试程序。WSL性能显著优于虚拟机，可节省测试时间。
 
 ## FAQ
 1. 测试程序终止又不希望从头开始执行所有算法
