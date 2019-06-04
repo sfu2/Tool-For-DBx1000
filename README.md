@@ -16,7 +16,10 @@
   **注**：各项测试结果默认重定向至DBx1000/Result/目录下，文件名为"算法名_t线程数量.txt"。例：WAIT_DIE_t1.txt即为DBx1000在WAIT_DIE并发控制算法下使用1个线程的测试结果。
 
 - ```test_analysis.py```  
-  统计上述```test_cc.py```测试脚本的测试结果并计算吞吐率，其中吞吐率通过txn_cnt/SimTime计算得。
+  统计上述```test_cc.py```测试脚本的测试结果并计算吞吐率，其中吞吐率通过throughput = txn_cnt / run_time * thd_cnt计算得。
+> In DBx1000, the throughput = txn_cnt / run_time * thd_cnt, where txn_cnt includes both payment and new_order txns. For TPS, you need to count new_order transactions only, which is half of the total throughput.  
+The \*\*\*_time is measured in nanoseconds; dividing by billion makes the unit second.  
+Ref: https://github.com/yxymit/DBx1000/issues/15
 
 ## 用法
 1. 切换至DBx1000的目录下
