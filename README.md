@@ -6,15 +6,17 @@
 
 **免责声明：本repo代码仅供参考，因使用本repo代码而造成的所有损失自负！**
 
-```test_cc.py```
-测试DBx1000提供的所有并发控制算法。具体测试参数为：
-- 仓库数量：1
-- 分区数量：1
-- 线程数量：1-8
-- 工作负载：TPCC
-- 分区最大事务数：1000,000
+- ```test_cc.py```  
+  测试DBx1000提供的所有并发控制算法。具体测试参数为：
+  - 仓库数量：1
+  - 分区数量：1
+  - 线程数量：1-8
+  - 工作负载：TPCC
+  - 分区最大事务数：1000,000  
+  **注**：各项测试结果默认重定向至DBx1000/Result/目录下，文件名为"算法名_t线程数量.txt"。例：WAIT_DIE_t1.txt即为DBx1000在WAIT_DIE并发控制算法下使用1个线程的测试结果。
 
-各项测试结果默认重定向至DBx1000/Result/目录下，文件名为"算法名_t线程数量.txt"。例：WAIT_DIE_t1.txt即为DBx1000在WAIT_DIE并发控制算法下使用1个线程的测试结果。
+- ```test_analysis.py```  
+  统计上述```test_cc.py```测试脚本的测试结果并计算吞吐率，其中吞吐率通过txn_cnt/SimTime计算得。
 
 ## 用法
 1. 切换至DBx1000的目录下
@@ -49,7 +51,18 @@ PASS Run		alg=HEKATON,	thread=8
 PASS Compile		alg=WAIT_DIE,	workload=TPCC
 PASS Run		alg=WAIT_DIE,	thread=1
 PASS Run		alg=WAIT_DIE,	thread=2
-...
+......
+```
+4. 运行测试分析程序
+```python
+python test_analysis.py
+```
+预期输出：
+```
+WAIT_DI	NO_WAIT	DL_DETE	TIMESTA	MVCC	HEKATON	HSTORE	OCC	TICTOC	SILO	BEST
+1.07948 1.13242 0.83193 0.81642 0.90443 0.98980 1.51293 0.92433 1.02396 1.36134 HSTORE
+1.11501 1.15171 1.06472 0.00000 1.50135 1.24159 1.96521 0.90358 1.68552 2.13487 SILO
+......
 ```
 
 ## 建议
