@@ -16,7 +16,7 @@
   **注**：各项测试结果默认重定向至DBx1000/Result/目录下，文件名为"算法名_t线程数量.txt"。例：WAIT_DIE_t1.txt即为DBx1000在WAIT_DIE并发控制算法下使用1个线程的测试结果。
 
 - ```test_analysis.py```  
-  统计上述```test_cc.py```测试脚本的测试结果并计算吞吐率，其中吞吐率通过throughput = txn_cnt / run_time * thd_cnt计算得。
+  统计上述```test_cc.py```测试脚本的测试结果并计算吞吐率，其中吞吐率通过 throughput = txn_cnt / run_time * thd_cnt 计算得单位为 事务/纳秒。
 > In DBx1000, the throughput = txn_cnt / run_time * thd_cnt, where txn_cnt includes both payment and new_order txns. For TPS, you need to count new_order transactions only, which is half of the total throughput.  
 The \*\*\*_time is measured in nanoseconds; dividing by billion makes the unit second.  
 Ref: https://github.com/yxymit/DBx1000/issues/15
@@ -32,7 +32,7 @@ wget https://raw.githubusercontent.com/AnonymousSFZ/Tool-For-DBx1000/master/test
 ```
 3. 运行自动测试程序
 ```
-python test_cc.py
+python3 test_cc.py
 ```
 预期输出：
 ```
@@ -58,7 +58,7 @@ PASS Run		alg=WAIT_DIE,	thread=2
 ```
 4. 运行测试分析程序
 ```python
-python test_analysis.py
+python3 test_analysis.py
 ```
 预期输出：
 ```
@@ -90,3 +90,7 @@ algs = ["WAIT_DIE", "NO_WAIT", "DL_DETECT", "TIMESTAMP", "MVCC","HEKATON", "HSTO
 kill %{job_id}
 ```
 命令终止测试程序。但请注意，下一次执行测试程序时仍会从头开始重新测试，关于此问题请参考FAQ 1。
+
+4. 部分算法未完成测试，但我仍希望运行测试结果分析脚本
+
+在```test_analysis.py```中的ALGS列表中删去未完成测试的算法名称即可。测试分析结果中吞吐率为0即表示该项测试未完成，请检查Result目录下相应输出文件。
