@@ -37,7 +37,7 @@ def test_compile(job):
 		print("ERROR in compiling job=")
 		print(job)
 		exit(0)
-	print "PASS Compile\t\talg=%s,\tworkload=%s" % (job['CC_ALG'], job['WORKLOAD'])
+	print("PASS Compile\t\talg=%s,\tworkload=%s" % (job['CC_ALG'], job['WORKLOAD']))
 	for i in range(8):
 		os.system("./rundb -n1 -p1 -t"+str(i+1)+" > ./Result/"+job['CC_ALG']+"_t"+str(i+1)+".txt")	
 		print("PASS Run\t\talg=%s,\tthread=%d" % (job['CC_ALG'], i+1))
