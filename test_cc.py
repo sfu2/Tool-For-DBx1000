@@ -24,7 +24,7 @@ def insert_job(alg):
 
 def test_compile(job):
 	os.system("cp "+ dbms_cfg[0] +' ' + dbms_cfg[1])
-	for (param, value) in job.iteritems():
+	for (param, value) in job.items():
 		pattern = r"\#define\s*" + re.escape(param) + r'.*'
 		replacement = "#define " + param + ' ' + str(value)
 		replace(dbms_cfg[1], pattern, replacement)
@@ -34,20 +34,20 @@ def test_compile(job):
 	os.system("make clean > temp.out 2>&1")
 	ret = os.system("make -j > temp.out 2>&1")
 	if ret != 0:
-		print "ERROR in compiling job="
-		print job
+		print("ERROR in compiling job=")
+		print(job)
 		exit(0)
 	print "PASS Compile\t\talg=%s,\tworkload=%s" % (job['CC_ALG'], job['WORKLOAD'])
 	for i in range(8):
 		os.system("./rundb -n1 -p1 -t"+str(i+1)+" > ./Result/"+job['CC_ALG']+"_t"+str(i+1)+".txt")	
-		print "PASS Run\t\talg=%s,\tthread=%d" % (job['CC_ALG'], i+1)
+		print("PASS Run\t\talg=%s,\tthread=%d" % (job['CC_ALG'], i+1))
 
 # run TPCC tests
 jobs = {}
 os.system("mkdir -p Result")
 for alg in algs: 
 	insert_job(alg)
-for (jobname, job) in jobs.iteritems():
+for (jobname, job) in jobs.items():
 	test_compile(job)
 os.system('cp config-std.h config.h')
 os.system('make clean > temp.out 2>&1')
